@@ -168,10 +168,10 @@ where town_from = 'Rostov' and town_to = 'Moscow';
 select name from passenger #13
 order by name desc limit 1;
 
-select p.id,p.name, count(passenger_id) from pass_in_trip #14
-                                                 join passenger p on p.id = pass_in_trip.passenger_id
-group by p.id
-order by count(passenger_id) desc, p.name;
+select p.name, count(passenger_id) from pass_in_trip
+                                            join passenger p on p.id = pass_in_trip.passenger_id
+group by p.name
+order by count(passenger_id) desc, p.name desc;
 
-delete cascade from trip #15
+delete from trip #15
  where town_from = 'Moscow';
