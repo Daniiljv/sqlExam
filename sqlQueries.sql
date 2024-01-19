@@ -122,56 +122,56 @@ values(1,1100,1,'1a'),
       (31,7771,14,'5d'),
       (32,7772,14,'1c');
 
-select name from passenger;
+select name from passenger; #1
 
-select name from company;
+select name from company; #2
 
-select * from trip
+select * from trip #3
 where town_from = 'Moscow';
 
-select name from passenger
+select name from passenger #4
 where name like '%%man';
 
-select count(*) from trip
+select count(*) from trip #5
 where plane = 'TU-134';
 
-select name,t.plane from company
+select name,t.plane from company #6
                              join trip t on t.company_id = company.id
 where plane = 'Boeing'
 group by name,t.plane;
 
-select plane from trip
+select plane from trip #7
 where town_to = 'Moscow'
 group by plane;
 
-select name from company
+select name from company #8
                      join trip t on t.company_id = company.id
 where town_from = 'Vladivostok';
 
-select p.id, count(passenger_id) from pass_in_trip
+select p.id, count(passenger_id) from pass_in_trip #9
                                           join passenger p on p.id = pass_in_trip.passenger_id
 group by p.id;
 
-select p.name, town_to from pass_in_trip
+select p.name, town_to from pass_in_trip #10
                                 join passenger p on p.id = pass_in_trip.passenger_id
                                 join trip t on t.id = pass_in_trip.trip_id
 where p.name = 'Bruce Willis';
 
-select p.name, t.town_to, t.time_in from pass_in_trip
+select p.name, t.town_to, t.time_in from pass_in_trip #11
                                              join passenger p on p.id = pass_in_trip.passenger_id
                                              join trip t on t.id = pass_in_trip.trip_id
 where p.name = 'Steve Martin' and t.town_to = 'London';
 
-select count(*) from trip
+select count(*) from trip #12
 where town_from = 'Rostov' and town_to = 'Moscow';
 
-select name from passenger
+select name from passenger #13
 order by name desc limit 1;
 
-select p.id,p.name, count(passenger_id) from pass_in_trip
+select p.id,p.name, count(passenger_id) from pass_in_trip #14
                                                  join passenger p on p.id = pass_in_trip.passenger_id
 group by p.id
 order by count(passenger_id) desc, p.name;
 
-delete cascade from trip
+delete cascade from trip #15
  where town_from = 'Moscow';
