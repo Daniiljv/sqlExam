@@ -168,10 +168,14 @@ where town_from = 'Rostov' and town_to = 'Moscow';
 select name from passenger #13
 order by name desc limit 1;
 
-select p.name, count(passenger_id) from pass_in_trip
+select name from passenger #14
+group by name
+having count(*)> 1;
+
+select p.name, count(passenger_id) from pass_in_trip #15
                                             join passenger p on p.id = pass_in_trip.passenger_id
 group by p.name
 order by count(passenger_id) desc, p.name desc;
 
-delete from trip #15
+delete from trip #16
  where town_from = 'Moscow';
